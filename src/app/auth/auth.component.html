@@ -1,0 +1,27 @@
+<div class="login-container">
+  <h1 nz-typography>Login Page</h1>
+  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="userLogin()">
+    <div nz-col class="gutter-row" [nzSpan]="24"><div class="inner-box">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Email!">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="email" placeholder="Email"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div></div>
+    <div nz-col class="gutter-row" [nzSpan]="24"><div class="inner-box">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="Password"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div></div>
+    <div nz-col class="gutter-row" [nzSpan]="24"><div class="inner-box">
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    </div></div>
+  </form>
+  <nz-spin nzSimple [nzSize]="'large'" *ngIf="loading"></nz-spin>
+</div>

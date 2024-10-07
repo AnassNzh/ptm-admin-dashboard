@@ -1,0 +1,56 @@
+import {Component, OnInit} from '@angular/core';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {Transaction} from '../models/transaction.model';
+import {TransactionService} from '../services/transaction.service';
+
+@Component({
+  selector: 'app-transaction-management',
+  templateUrl: './transaction-management.component.html',
+  styleUrl: './transaction-management.component.css'
+})
+export class TransactionManagementComponent implements OnInit {
+  // transactions: Transaction[] = [];
+
+  constructor(
+    private transactionService: TransactionService,
+    private notification: NzNotificationService
+  ) {
+  }
+
+  ngOnInit(): void {
+    // this.fetchTransactions();
+  }
+
+  // fetchTransactions(): void {
+  //   this.transactionService.getTransactions().subscribe(
+  //     (data) => {
+  //       this.transactions = data;
+  //     },
+  //     (error) => {
+  //       this.notification.error('Error', 'Failed to fetch transactions');
+  //     }
+  //   );
+  // }
+
+  onAddTransaction(): void {
+    // Open a modal to add a transaction
+  }
+
+  // onEditTransaction(transaction: Transaction): void {
+  //   // Open a modal to edit transaction
+  // }
+  //
+  // onDeleteTransaction(id: number): void {
+  //   this.transactionService.deleteTransaction(id).subscribe(
+  //     () => {
+  //       this.notification.success('Success', 'Transaction deleted successfully');
+  //       this.fetchTransactions();
+  //     },
+  //     (error) => {
+  //       this.notification.error('Error', 'Failed to delete transaction');
+  //     }
+  //   );
+  // }
+
+  protected readonly Number = Number;
+}

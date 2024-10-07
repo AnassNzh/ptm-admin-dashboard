@@ -1,0 +1,45 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="{{title}}"
+  [nzWidth]="'700px'"
+  (nzOnCancel)="onCancel()"
+  (nzOnOk)="onSubmit()">
+  <ng-container *nzModalContent>
+    <form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Amount</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Please input amount!">
+          <input nz-input formControlName="amount"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Currency</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Please select currency!">
+          <input nz-input formControlName="currency"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Description</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Please input description!">
+          <input nz-input formControlName="description"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Account</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Please input account!">
+          <input nz-input formControlName="account"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Payment Method</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Please select payment method!">
+          <input nz-input formControlName="paymentMethod"/>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

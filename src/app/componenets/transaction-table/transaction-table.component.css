@@ -1,0 +1,18 @@
+button {
+  margin: 0 10px;
+}
+
+.add-btn {
+  margin: 20px 0;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+}
+
+input {
+  margin-right: 20px;
+  width: 300px;
+}

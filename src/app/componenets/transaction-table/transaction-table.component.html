@@ -1,0 +1,74 @@
+<button class="add-btn" (click)="openAddModal()" nz-button nzType="primary">Add transaction</button>
+<div class="search-container" nz-row>
+  <input nz-input placeholder="Transaction ID" [(ngModel)]="transactionId" (keyup.enter)="searchTransactions()"/>
+  <nz-select [(ngModel)]="status" placeholder="Select Status" style="width: 150px;">
+    <nz-option nzValue="" nzLabel="All"></nz-option>
+    <nz-option nzValue="PENDING" nzLabel="Pending"></nz-option>
+    <nz-option nzValue="COMPLETED" nzLabel="Completed"></nz-option>
+    <nz-option nzValue="CANCELLED" nzLabel="Cancelled"></nz-option>
+    <nz-option nzValue="FAILED" nzLabel="Failed"></nz-option>
+  </nz-select>
+  <button nz-button nzType="primary" (click)="searchTransactions()">Search</button>
+</div>
+
+<nz-table
+  #transactionTable
+  [nzData]="transactions"
+  [nzBordered]="true"
+  [nzSize]="'middle'"
+  [nzTotal]="total"
+  [nzLoading]="loading"
+  [nzFrontPagination]="false"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th nzColumnKey="id" nzShowSort>Transaction ID</th>
+    <th nzColumnKey="amount" nzShowSort>Amount</th>
+    <th nzColumnKey="currency">Currency</th>
+    <th nzColumnKey="date">Date</th>
+    <th nzColumnKey="status">Status</th>
+    <th nzColumnKey="description">Description</th>
+    <th nzColumnKey="accountNumber">Account Number</th>
+    <th nzColumnKey="customerName">Customer Name</th>
+    <th nzColumnKey="paymentMethodType">Payment Method Type</th>
+    <th nzColumnKey="paymentMethodProvider">Payment Method Provider</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactions">
+    <td>{{ transaction.id }}</td>
+    <td>{{ transaction.amount }}</td>
+    <td>{{ transaction.currency }}</td>
+    <td>{{ transaction.transactionDate | date:'medium' }}</td>
+    <td>{{ transaction.description }}</td>
+    <td>{{ transaction.status }}</td>
+    <td>{{ transaction.account.accountNumber }}</td>
+    <td>{{ transaction.account.customer.name }}</td>
+    <td>{{ transaction.paymentMethod.type }}</td>
+    <td>{{ transaction.paymentMethod.provider }}</td>
+    <td>
+      <button (click)="openProcessModal(transaction)" nz-button nzType="default">Process</button>
+      <button (click)="onDelete(transaction.id)" nz-button nzType="primary" nzDanger>Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<app-transaction-form
+  [isVisible]="addModalVisible"
+  [transaction]="selectedTransaction"
+  (cancel)="onCancel()"
+  (submit)="handleSubmit($event)">
+</app-transaction-form>
+
+<nz-modal
+  [(nzVisible)]="deleteModalVisible"
+  nzTitle="Confirm Deletion"
+  (nzOnCancel)="cancelDelete()"
+  (nzOnOk)="confirmDelete()">
+  <ng-container *nzModalContent>
+    <p>Are you sure you want to delete the transaction {{ selectedTransaction?.id }}?</p>
+  </ng-container>
+</nz-modal>
